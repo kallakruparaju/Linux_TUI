@@ -15,6 +15,7 @@ def main():
     print("""
     \n\t\t\t\t\t1.Basic Linux commands
     \n\t\t\t\t\t2.Services
+    \n\t\t\t\t\t3.Files
     \n""")
     os.system("tput setaf 7")
     print("\n\t\t\t\t\tEnter 0 to terminate \n")
@@ -31,6 +32,10 @@ def main():
         os.system("clear")
         from Services import Services
         Services.Services()
+    elif(choice==3):
+        os.system("clear")
+        from Files import Files
+        Files.Files()
     else : 
         print("Enter the correct option..")
 if __name__ == "__main__":
