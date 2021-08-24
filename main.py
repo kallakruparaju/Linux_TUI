@@ -16,6 +16,8 @@ def main():
     \n\t\t\t\t\t1.Basic Linux commands
     \n\t\t\t\t\t2.Services
     \n\t\t\t\t\t3.Files
+    \n\t\t\t\t\t4.Webserver
+    \n\t\t\t\t\t5.LVM
     \n""")
     os.system("tput setaf 7")
     print("\n\t\t\t\t\tEnter 0 to terminate \n")
@@ -36,6 +38,14 @@ def main():
         os.system("clear")
         from Files import Files
         Files.Files()
+    elif(choice==4):
+        os.system("clear")
+        from Webserver import Webserver
+        Webserver.Webserver()
+    elif(choice==5):
+        os.system("clear")
+        from Lvm import Lvm
+        Lvm.Lvm()
     else : 
         print("Enter the correct option..")
 if __name__ == "__main__":

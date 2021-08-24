@@ -13,8 +13,10 @@ def BasicCommands():
     os.system("tput setaf 6")
     
     print("""
-    \n\t\t\t\t\t1.Show Date
-    \n\t\t\t\t\t2.Show Cal
+    \n\t\t\t\t\t1.Show Date                  \t\t\t2.Show Cal
+    \n\t\t\t\t\t3.Show manual of the command \t\t\t4.Show Free Memory
+    \n\t\t\t\t\t5.Show Network card          \t\t\t6.Show mounted disks
+    \n\t\t\t\t\t7.Show uptime                \t\t\t8.Check user
     \n""")
     
     os.system("tput setaf 7")
@@ -30,6 +32,24 @@ def BasicCommands():
     elif(choice==2):
         print()
         os.system("cal")
+    elif(choice==3):    
+        cmd = str(input("\nEnter the command: "))
+        os.system("man {}".format(cmd))
+    elif(choice==4):
+        print()
+        os.system("free -m")
+    elif(choice==5):
+        print()
+        os.system("ifconfig")
+    elif(choice==6):
+        print()
+        os.system("df -h")
+    elif(choice==7):
+        print()
+        os.system("uptime")
+    elif(choice==8):
+        print()
+        os.system("whoami")
     elif(choice== -1):
         os.system("clear")
         import main

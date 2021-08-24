@@ -1,5 +1,6 @@
-def Services(): 
+def Webserver(): 
     import os
+    import subprocess
     os.system("tput setaf 10")
     print("***************************************************************************************************************************************")
     os.system("tput setaf 10")
@@ -9,14 +10,14 @@ def Services():
     print("***************************************************************************************************************************************")
 
     os.system("tput setaf 11")
-    print("\n\t\t\t\t..........................SERVICES MENU.............................")
+    print("\n\t\t\t\t..........................WEBSERVER MENU.............................")
     os.system("tput setaf 6")
     
     print("""
-    \n\t\t\t\t1.Show all services          \t\t\t\t2.Start Service
-    \n\t\t\t\t3.Show Status of the Service \t\t\t\t4.Restart Service
-    \n\t\t\t\t5.Enable Service             \t\t\t\t6.Disable Service
-    \n\t\t\t\t7.Reload Service             \t\t\t\t8.Stop Service
+    \n\t\t\t\t1.Check httpd installed or not  \t\t\t\t2.Install HTTPD
+    \n\t\t\t\t3.Httpd Service Status          \t\t\t\t4.Start httpd Service 
+    \n\t\t\t\t5.Stop httpd service            \t\t\t\t6.restart httpd Service 
+    \n\t\t\t\t7.Enable httpd service          \t\t\t\t8.Disable httpd Service
     \n""")
     
     os.system("tput setaf 7")
@@ -28,28 +29,28 @@ def Services():
     if(choice==0):
         exit()
     elif(choice==1):
-        os.system("systemctl -a")
+        package=subprocess.getoutput("rpm -q httpd")
+        if package[0] == 0:
+             print("Httpd package is already installed")
     elif(choice==2):
-        name = str(input("\nEnter Service Name: "))
-        os.system("sudo systemctl start {}".format(name))
+        package=subprocess.getoutput("rpm -q httpd")
+        if package[0] == 0:
+             print("Httpd package is already installed")
+        else:
+             print("wait httpd package is installing")     
+             subprocess.getoutput("yum install httpd -y >> /dev/null")
     elif(choice==3):
-        name = str(input("\nEnter Service Name: "))
-        os.system("sudo systemctl status {}".format(name))
+        os.system("sudo systemctl status httpd")
     elif(choice==4):
-        name = str(input("\nEnter Service Name: "))
-        os.system("sudo systemctl restart {}".format(name))
+        os.system("sudo systemctl start httpd")
     elif(choice==5):
-        name = str(input("\nEnter Service Name: "))
-        os.system("sudo systemctl enable {}".format(name))
+         os.system("sudo systemctl stop httpd")
     elif(choice==6):
-        name = str(input("\nEnter Service Name: "))
-        os.system("sudo systemctl disable {}".format(name))
+         os.system("sudo systemctl restart httpd")
     elif(choice==7):
-        name = str(input("\nEnter Service Name: "))
-        os.system("sudo systemctl reload {}".format(name))
+         os.system("sudo systemctl enable httpd")
     elif(choice==8):
-        name = str(input("\nEnter Service Name: "))
-        os.system("sudo systemctl stop {}".format(name))
+         os.system("sudo systemctl disable httpd")
     elif(choice==-1):
         os.system("clear")
         import main
@@ -62,4 +63,4 @@ def Services():
 
 
 while True:
-   Services()
+   Webserver()
