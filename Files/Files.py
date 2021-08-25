@@ -1,6 +1,6 @@
 def Files(): 
     import os
-    import subprocess
+    from subprocess import getstatusoutput
     os.system("tput setaf 10")
     print("***************************************************************************************************************************************")
     os.system("tput setaf 10")
@@ -34,9 +34,8 @@ def Files():
         os.system("ls -alh")
     elif(choice==2):
         filename = str(input("\nEnter File Name: "))
-        test=subprocess.getoutput("ls {}".format(filename))
-        exitcode=subprocess.getoutput("echo $?")
-        if(exitcode==0):
+        test=getstatusoutput("ls {}".format(filename))
+        if(test[0]==0):
            print("\nFile Existed")
         else:
            print("\nFile not Existed")
@@ -45,9 +44,8 @@ def Files():
         os.system("touch {}".format(filename))
     elif(choice==4):
         foldername = str(input("\nEnter Folder Name: "))
-        test=subprocess.getoutput("mkdir {}".format(foldername))
-        exitcode=subprocess.getoutput("echo $?")
-        if(exitcode==0):
+        test=getstatusoutput("mkdir {}".format(foldername))
+        if(test[0]==0):
            print("folder created successfully")
         else:
            print("folder already existed")
@@ -70,17 +68,11 @@ def Files():
     elif(choice==7):
         filename = str(input("\nEnter file Name: "))
         foldername = str(input("\nEnter Folder Name: "))
-        subprocess.getoutput("cp {} {}".format(filename,foldername))
-        exitcode=subprocess.getoutput("echo $?")
-        if(exitcode==0):
-           print("file copied successfully")
+        os.system("cp {} {}".format(filename,foldername))
     elif(choice==8):
         filename = str(input("\nEnter file Name: "))
         foldername = str(input("\nEnter Folder Name: "))
-        subprocess.getoutput("mv {} {}".format(filename,foldername))
-        exitcode=subprocess.getoutput("echo $?")
-        if(exitcode==0):
-           print("file moved successfully")
+        os.system("mv {} {}".format(filename,foldername))
     elif(choice==9):
         filename = str(input("\nEnter file Name: "))
         os.system("rm {}".format(filename))

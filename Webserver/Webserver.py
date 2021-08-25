@@ -1,6 +1,6 @@
 def Webserver(): 
     import os
-    import subprocess
+    from subprocess import getstatusoutput
     os.system("tput setaf 10")
     print("***************************************************************************************************************************************")
     os.system("tput setaf 10")
@@ -29,16 +29,18 @@ def Webserver():
     if(choice==0):
         exit()
     elif(choice==1):
-        package=subprocess.getoutput("rpm -q httpd")
+        package=getstatusoutput("rpm -q httpd")
         if package[0] == 0:
-             print("Httpd package is already installed")
+            print("Package httpd is already Installed\tPackage is - {}".format(package[1]))
+        else:
+            print("Package httpd is not installed")
     elif(choice==2):
-        package=subprocess.getoutput("rpm -q httpd")
+        package=getstatusoutput("rpm -q httpd")
         if package[0] == 0:
-             print("Httpd package is already installed")
+            print("Package httpd is already Installed\tPackage is - {}".format(package[1]))
         else:
              print("wait httpd package is installing")     
-             subprocess.getoutput("yum install httpd -y >> /dev/null")
+             package=getstatusoutput("yum install httpd -y >> /dev/null")
     elif(choice==3):
         os.system("sudo systemctl status httpd")
     elif(choice==4):
